@@ -20,24 +20,33 @@
         @mouseover="hover = index"
         @mouseleave="hover = -1"
       >
-        <div class="object-cover h-[100%] hover:brightness-125 cursor-pointer">
+        <div
+          class="object-cover w-[100%] h-[100%] hover:brightness-125 cursor-pointer"
+        >
           <div
-            class="absolute top-0 right-0 mt-1 mr-1"
+            class="absolute w-[100%] h-[100%] flex bg-gradient-to-b from-black to-30%"
             v-show="hover === index"
             @click="useMovie.setFavoritesMovies(movie)"
           >
+            <span class="flex-1 text-left mt-1 ml-1">{{
+              movie.original_title
+            }}</span>
             <Heart
               :size="20"
-              class="cursor-pointer"
+              class="cursor-pointer flex-0 mt-1 mr-1"
               v-if="
                 useMovie.getFavoritesMovies.some((fav) => fav.id === movie.id)
               "
             />
-            <HeartOutline :size="20" class="cursor-pointer" v-else />
+            <HeartOutline
+              :size="20"
+              class="cursor-pointer flex-0 mt-1 mr-1"
+              v-else
+            />
           </div>
           <img
             style="user-select: none"
-            class="pointer-events-none h-[100%] z-[-1]"
+            class="pointer-events-none w-[100%] h-[100%] z-[-1]"
             :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`"
           />
         </div>
