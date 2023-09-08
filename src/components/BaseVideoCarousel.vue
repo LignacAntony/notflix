@@ -1,28 +1,37 @@
 <template>
   <div class="min-w-[100%]">
     <div class="flex justify-between mr-6">
-      <div class="flex items-center font-semibold text-white text-2xl cursor-pointer"></div>
+      <div
+        class="flex items-center font-semibold text-white text-2xl cursor-pointer"
+      ></div>
     </div>
     <Carousel
       ref="carousel"
-      :items-to-show="8"
+      :breakpoints="breakpoints"
       :items-to-scroll="1"
       :wrap-around="isWrapAround"
       :transition="500"
-      snapAlign="center"
       class="bg-transparent"
     >
       <Slide
-        v-for="movie in movies"
+        v-for="(movie, index) in movies"
         :key="movie.id"
         class="flex items-center object-cover text-white bg-transparent"
+        @mouseover="hover = index"
+        @mouseleave="hover = -1"
       >
         <div class="object-cover h-[100%] hover:brightness-125 cursor-pointer">
-          <div class="absolute top-0 right-0 mt-1 mr-1" @click="useMovie.setFavoritesMovies(movie)">
+          <div
+            class="absolute top-0 right-0 mt-1 mr-1"
+            v-show="hover === index"
+            @click="useMovie.setFavoritesMovies(movie)"
+          >
             <Heart
               :size="20"
               class="cursor-pointer"
-              v-if="useMovie.getFavoritesMovies.some((fav) => fav.id === movie.id)"
+              v-if="
+                useMovie.getFavoritesMovies.some((fav) => fav.id === movie.id)
+              "
             />
             <HeartOutline :size="20" class="cursor-pointer" v-else />
           </div>
@@ -41,20 +50,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs, PropType } from 'vue'
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Navigation } from 'vue3-carousel'
-import HeartOutline from 'vue-material-design-icons/HeartOutline.vue'
-import Heart from 'vue-material-design-icons/Heart.vue'
-import { useMovieStore, Movie } from '../stores/movies'
+import { ref, toRefs, PropType } from "vue";
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
+import HeartOutline from "vue-material-design-icons/HeartOutline.vue";
+import Heart from "vue-material-design-icons/Heart.vue";
+import { useMovieStore, Movie } from "../stores/movies";
 
-const useMovie = useMovieStore()
+const useMovie = useMovieStore();
 const props = defineProps({
   category: String,
   movies: Array as PropType<Movie[]>,
-  isWrapAround: Boolean
-})
-const { movies } = toRefs(props)
+  isWrapAround: Boolean,
+});
+const { movies } = toRefs(props);
+const hover = ref(-1);
+const breakpoints = {
+  700: {
+    itemsToShow: 4,
+    snapAlign: "center",
+  },
+  1024: {
+    itemsToShow: 8,
+    snapAlign: "start",
+  },
+};
 </script>
 <style>
 .carousel__prev,

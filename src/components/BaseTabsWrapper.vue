@@ -8,7 +8,7 @@
         :class="[
           selectedTitle === title
             ? 'text-red-500 border-b-2 border-b-red-500'
-            : 'text-white border-b-2 border-b-white'
+            : 'text-white border-b-2 border-b-white',
         ]"
         @click="selectedTitle = title"
       >
@@ -19,11 +19,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useSlots, ref, provide } from 'vue'
+import { useSlots, ref, provide } from "vue";
 
-const slots = useSlots()
-const tabTitles = ref(slots.default().map((tab) => tab.props.title))
-const selectedTitle = ref(tabTitles.value[0])
+const slots = useSlots();
+const tabTitles = ref(slots.default().map((tab) => tab.props.title));
+const selectedTitle = ref(tabTitles.value[0]);
 
-provide('selectedTitle', selectedTitle)
+provide("selectedTitle", selectedTitle);
 </script>
