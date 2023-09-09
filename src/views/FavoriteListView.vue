@@ -15,14 +15,14 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import BaseVideoCarousel from '@/components/BaseVideoCarousel.vue'
-import { useMovieStore } from '../stores/movies'
+import { onMounted } from "vue";
+import BaseVideoCarousel from "@/components/BaseVideoCarousel.vue";
+import { useMovieStore } from "../stores/movies";
 
-const useMovie = useMovieStore()
+const useMovie = useMovieStore();
 onMounted(async () => {
-  await useMovie.addMovies()
-})
+  await useMovie.addMovies();
+});
 </script>
 
 <style></style>
