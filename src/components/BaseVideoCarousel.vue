@@ -26,7 +26,6 @@
           <div
             class="absolute w-[100%] h-[100%] flex bg-gradient-to-b from-black to-30%"
             v-show="hover === index"
-            @click="useMovie.setFavoritesMovies(movie)"
           >
             <span class="flex-1 text-left mt-1 ml-1">{{
               movie.original_title
@@ -37,11 +36,13 @@
               v-if="
                 useMovie.getFavoritesMovies.some((fav) => fav.id === movie.id)
               "
+              @click="useMovie.setFavoritesMovies(movie)"
             />
             <HeartOutline
               :size="20"
               class="cursor-pointer flex-0 mt-1 mr-1"
               v-else
+              @click="useMovie.setFavoritesMovies(movie)"
             />
           </div>
           <img

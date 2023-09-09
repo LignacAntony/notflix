@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useStorage } from "@vueuse/core";
 import myMovies from "../movies.json";
 
 interface DataShema {
@@ -39,7 +40,7 @@ export const useMovieStore = defineStore("movie", {
   state: () => ({
     myMovies: [] as SuggestMovie[],
     movies: [] as DataShema[],
-    favoritesMovies: [] as Movie[],
+    favoritesMovies: useStorage("favoritesMovies", [] as Movie[]),
   }),
   actions: {
     addMyMovies() {
