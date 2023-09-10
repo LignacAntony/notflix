@@ -86,8 +86,9 @@ export const useMovieStore = defineStore("movie", {
     },
     setFavoritesMovies(movie: Movie) {
       const foundFavoriteIndex = this.favoritesMovies.findIndex(
-        (f) => f === movie
+        (f) => f.id === movie.id
       );
+
       if (foundFavoriteIndex === -1) {
         this.favoritesMovies.push(movie);
       } else {

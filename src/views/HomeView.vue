@@ -1,5 +1,8 @@
 <template>
-  <div class="fixed bg-black z-20 h-screen w-[100%] right-0 top-0" />
+  <div
+    class="fixed bg-black z-20 h-screen w-[100%] right-0 top-0"
+    :style="backgroundStyle"
+  />
   <div id="HomeView" class="absolute z-20 h-screen w-[100%] right-0 top-0">
     <BaseMovieDetails v-if="movieDescription" :movie="movieDescription" />
     <div class="ml-5">
@@ -9,7 +12,7 @@
           <img
             :src="`/images/${movie.image}`"
             @click="setDecription(movie)"
-            class="w-[200px] h-[100%] m-1"
+            class="cursor-pointer w-[200px] h-[100%] mx-5 shadow-[0_5px_60px_-20px_rgba(255,255,255,0.3)]"
           />
         </li>
       </ul>
@@ -35,7 +38,7 @@ onBeforeMount(() => {
 
 const backgroundStyle = computed(() => {
   return {
-    "background-image": `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/${movieDescription.value.image})`,
+    "background-image": `linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 255, 255, 0)), url(/images/${movieDescription.value.banner})`,
     "background-position": "center",
     "background-size": "cover",
     "background-repeat": "no-repeat",

@@ -4,11 +4,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject } from "vue";
 
-const props = defineProps({
-  title: String
-})
+defineProps({ title: String });
 
-const selectedTitle = inject('selectedTitle')
+const selectedTitle = inject("selectedTitle");
 </script>

@@ -24,6 +24,5 @@ import { useSlots, ref, provide } from "vue";
 const slots = useSlots();
 const tabTitles = ref(slots.default().map((tab) => tab.props.title));
 const selectedTitle = ref(tabTitles.value[0]);
-
 provide("selectedTitle", selectedTitle);
 </script>

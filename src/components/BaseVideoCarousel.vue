@@ -48,7 +48,7 @@
           <img
             style="user-select: none"
             class="pointer-events-none w-[100%] h-[100%] z-[-1]"
-            :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`"
+            :src="`https://image.tmdb.org/t/p/w400${movie.poster_path}`"
           />
         </div>
       </Slide>
